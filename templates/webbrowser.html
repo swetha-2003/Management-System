@@ -1,0 +1,91 @@
+<!--Store this code in 'display.html' file inside the 'templates' folder-->
+
+<html lang="en">
+	<head>
+		<title>display</title>
+		<link rel="stylesheet" href="../static/style.css">
+	</head>
+
+				<div class="contentbar">
+					<h1>Your Details</h1> </br>
+
+						<div class="border">
+                        <table>
+                             <th>
+                             <tr style="color: black; ">
+
+                            <th>Name</th>
+                            <th>RollNo</th>
+                            <th>Email</th>
+                            <th>Year</th>
+                            <th>Department</th>
+                            <th>Course Name</th>
+                            <th>Course Organizer</th>
+                            <th>Course Duration</th>
+                            <th>From Date</th>
+                            <th>To Date</th>
+                            <th>From Date</th>
+                            <th>Drive link</th>
+                            <th>Proof</th>
+                             </tr>
+                             </th>
+
+                            </tr>
+                             <div>
+                                 <tr>
+                                {%for row in data%}
+                                    <div>
+                                <td>
+                                    {{row.name}}
+                                 </td>
+                                 <td>
+                                    {{row.rollno}}
+                                 </td>
+                                 <td>
+                                    {{row.email}}
+                                 </td>
+                                <td>
+                                    {{row.year}}
+                                 </td>
+                                 <td>
+                                    {{row.department}}
+                                 </td>
+                                 <td>
+                                    {{row.coursename}}
+                                 </td>
+                                 <td>
+                                    {{row.organizer}}
+                                 </td>
+                                <td>
+                                    {{row.duration}}
+                                 </td>
+                                 <td>
+                                    {{row.fromdate}}
+                                 </td>
+                                 <td>
+                                    {{row.todate}}
+                                 </td>
+                                    <td>
+                                    {{row.score}}
+                                 </td>
+                                    <td>
+                                    {{row.drive}}
+                                 </td>
+                                    <td>
+                                    {{row.proof}}
+                                 </td>
+                                    </div>
+
+                                {%endfor%}
+                                </tr>
+
+                        </div>
+
+                </table>
+
+				</div>
+
+			</div>
+		</div>
+	</body>
+</html>
