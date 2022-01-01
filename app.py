@@ -541,15 +541,23 @@ def upload_course():
 @app.route('/fetchs')
 def fetchs():
     Email = session["email"]
-    data = onlinecourse.query.all()
-    Email1 = onlinecourse.query.filter_by(email=Email)
+    # data = onlinecourse.query.all()
+    Course = onlinecourse.query.filter_by(email=Email)
+    Patent = patent.query.filter_by(email=Email)
+    Product =product.query.filter_by(email=Email)
+    Project = project.query.filter_by(email=Email)
+    Publication = publication.query.filter_by(email=Email)
+    Internships = Internship.query.filter_by(email=Email)
+    Presentation = paperpresentation.query.filter_by(email=Email)
 
-    if (Email1):
-         return render_template('webbrowser.html', data=Email1)
+
+    if (Course):
+         return render_template('webbrowser.html', Course=Course , Patent=Patent , Product=Product , Project=Project , Publication=Publication , Internships=Internships , Presentation=Presentation)
     else:
-        message="No Data to Display"
-        return render_template('webbrowser.html', message=message)
-    #
+        pass
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
