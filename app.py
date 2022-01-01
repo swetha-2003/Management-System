@@ -11,7 +11,7 @@ from pip._vendor import cachecontrol
 import google.auth.transport.requests
 from flask import request
 from flask import render_template
-from sqlalchemy import create_engine, Column, Integer, String,Date
+from sqlalchemy import create_engine, Column, Integer, String, Date, exists
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from werkzeug.utils import secure_filename
@@ -540,9 +540,16 @@ def upload_course():
 
 @app.route('/fetchs')
 def fetchs():
+    Email = session["email"]
     data = onlinecourse.query.all()
-    return render_template('webbrowser.html', data=data)
+    Email1 = onlinecourse.query.filter_by(email=Email)
 
+    if (Email1):
+         return render_template('webbrowser.html', data=Email1)
+    else:
+        message="No Data to Display"
+        return render_template('webbrowser.html', message=message)
+    #
 
 if __name__ == '__main__':
     app.run(debug=True)
