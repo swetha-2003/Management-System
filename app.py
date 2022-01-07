@@ -551,10 +551,14 @@ def fetchs():
     Presentation = paperpresentation.query.filter_by(email=Email)
 
 
+
     if (Course):
-         return render_template('webbrowser.html', Course=Course , Patent=Patent , Product=Product , Project=Project , Publication=Publication , Internships=Internships , Presentation=Presentation)
+         for row in Course:
+            return render_template('myprogress.html',Course=Course)
     else:
         pass
+
+    # Patent = Patent, Product = Product, Project = Project, Publication = Publication, Internships = Internships, Presentation = Presentation
 
 
 

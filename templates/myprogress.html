@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <title></title>
+</head>
+<body>
+<style>
+
+ td {
+        width: 150px;
+        text-align: center;
+        border: 1px solid black;
+        padding: 5px;
+      }
+</style>
+<table>
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>RollNo</th>
+        <th>Email</th>
+        <th>Year of Study</th>
+        <th>Department</th>
+        <th>Course Name</th>
+        <th>Course Organizer</th>
+        <th>Course Duration</th>
+        <th>From Date</th>
+        <th>To Date</th>
+        <th>Course Score</th>
+        <th>Drive Link</th>
+        <th>Document Proof</th>
+
+
+
+    </tr>
+    </thead>
+    <tbody>
+     {% for row in Course %}
+            <tr>
+                 <td>{{row.name}}</td>
+                 <td>{{row.rollno}}</td>
+                 <td>{{row.email}}</td>
+                 <td>{{row.year}}</td>
+                 <td>{{row.department}}</td>
+                 <td>{{row.coursename}}</td>
+                 <td>{{row.organizer}}</td>
+                 <td>{{row.duration}}</td>
+                 <td>{{row.fromdate}}</td>
+                 <td>{{row.todate}}</td>
+                 <td>{{row.score}}</td>
+                 <td><a href="{{row.drive}}">{{ row.drive }}</a></td>
+                 <td>{{row.proof}}</td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+</body>
+</html>
