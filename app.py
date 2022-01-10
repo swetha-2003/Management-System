@@ -80,7 +80,7 @@ def register():
     result = query.first()
     if result:
         session['logged_in'] = True
-        return render_template("mainpage.html")
+        return render_template("admin.html")
     else:
         return render_template("login.html")
 
@@ -134,7 +134,14 @@ def index():
 @app.route('/protected_area')
 @login_is_required
 def protected_area():
-    return render_template("mainpage.html")
+    coursecount = onlinecourse.query.count()
+    presentationcount = paperpresentation.query.count()
+    projectcount = project.query.count()
+    publicationcount = publication.query.count()
+    internshipcount = Internship.query.count()
+    productcount = product.query.count()
+    patentcount = patent.query.count()
+    return render_template("mainpage.html",coursecount=coursecount,presentationcount=presentationcount,projectcount=projectcount,productcount=productcount,patentcount=patentcount,internshipcount=internshipcount,publicationcount=publicationcount)
 
 @app.route('/back')
 def back():
@@ -541,20 +548,31 @@ def upload_course():
 @app.route('/fetchs')
 def fetchs():
     Email = session["email"]
-    # data = onlinecourse.query.all()
-    Course = onlinecourse.query.filter_by(email=Email)
-    Patent = patent.query.filter_by(email=Email)
-    Product =product.query.filter_by(email=Email)
-    Project = project.query.filter_by(email=Email)
-    Publication = publication.query.filter_by(email=Email)
-    Internships = Internship.query.filter_by(email=Email)
-    Presentation = paperpresentation.query.filter_by(email=Email)
+    Presentation1=paperpresentation.query.all()
+    Project1 = project.query.all()
+    Course1 = onlinecourse.query.all()
+    Internships1=Internship.query.all()
+    Publication1=publication.query.all()
+    Product1=product.query.all()
+    Patent1=patent.query.all()
 
+
+    Presentation = paperpresentation.query.filter_by(email=Email)
+    Project = project.query.filter_by(email=Email)
+    Course = onlinecourse.query.filter_by(email=Email)
+    Internships = Internship.query.filter_by(email=Email)
+    Publication = publication.query.filter_by(email=Email)
+    Product =product.query.filter_by(email=Email)
+    Patent = patent.query.filter_by(email=Email)
 
 
     if (Course):
-         for row in Course:
             return render_template('myprogress.html',Course=Course)
+    else:
+        pass
+
+    if (Internships):
+            return render_template('myprogress.html', Internships=Internships)
     else:
         pass
 
