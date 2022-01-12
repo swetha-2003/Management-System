@@ -75,12 +75,20 @@ def login_is_required(function):
 def register():
     username = str(request.form['username'])
     password = str(request.form['password'])
-
     query = s.query(Users).filter(Users.username==username, Users.password==password)
     result = query.first()
+
+    Presentation1 = paperpresentation.query.all()
+    Project1 = project.query.all()
+    Course1 = onlinecourse.query.all()
+    Internships1 = Internship.query.all()
+    Publication1 = publication.query.all()
+    Product1 = product.query.all()
+    Patent1 = patent.query.all()
+
     if result:
         session['logged_in'] = True
-        return render_template("admin.html")
+        return render_template("admin.html",Presentation1=Presentation1,Project1=Project1,Course1=Course1,Internships1=Internships1,Publication1=Publication1,Patent1=Patent1,Product1=Product1)
     else:
         return render_template("login.html")
 
@@ -120,17 +128,6 @@ def callback():
 
 
 
-@app.route("/logout")
-def logout():
-    session.clear()
-    return redirect("/home")
-
-
-@app.route('/')
-def index():
-    return redirect("/home")
-
-
 @app.route('/protected_area')
 @login_is_required
 def protected_area():
@@ -143,21 +140,37 @@ def protected_area():
     patentcount = patent.query.count()
     return render_template("mainpage.html",coursecount=coursecount,presentationcount=presentationcount,projectcount=projectcount,productcount=productcount,patentcount=patentcount,internshipcount=internshipcount,publicationcount=publicationcount)
 
-@app.route('/back')
-def back():
-    return render_template("mainpage.html")
-
-@app.route('/projects')
-def projects():
-    return render_template("project.html")
 
 @app.route('/home')
 def home():
     return render_template("index.html")
 
+@app.route("/logout")
+def logout():
+    session.clear()
+    return redirect("/home")
+
+@app.route('/quicklinks')
+def quicklinks():
+    return render_template("quicklinks.html")
+
+@app.route('/')
+def index():
+    return redirect("/home")
+
+@app.route('/back')
+def back():
+    return render_template("mainpage.html")
+
 @app.route('/loginpage')
 def loginpage():
     return render_template("login.html")
+
+
+
+@app.route('/projects')
+def projects():
+    return render_template("project.html")
 
 @app.route('/paper_presentation')
 def paper_presentation():
@@ -170,7 +183,6 @@ def paper_publication():
 @app.route('/patents')
 def patents():
     return render_template("patent.html")
-
 
 
 @app.route('/product')
@@ -186,6 +198,51 @@ def course():
 def intern():
     return render_template("internship.html")
 
+@app.route('/adminhome')
+def admin():
+    Presentation1 = paperpresentation.query.all()
+    Project1 = project.query.all()
+    Course1 = onlinecourse.query.all()
+    Internships1 = Internship.query.all()
+    Publication1 = publication.query.all()
+    Product1 = product.query.all()
+    Patent1 = patent.query.all()
+    return render_template("admin.html",Presentation1=Presentation1,Project1=Project1,Course1=Course1,Internships1=Internships1,Publication1=Publication1,Patent1=Patent1,Product1=Product1)
+
+@app.route('/admincourse')
+def admincourse():
+    Course1 = onlinecourse.query.all()
+    return render_template("admincourse.html",Course1=Course1)
+
+@app.route('/adminpresentation')
+def adminpresentation():
+    Presentation1 = paperpresentation.query.all()
+    return render_template("adminpresentation.html",Presentation1=Presentation1)
+
+@app.route('/adminproject')
+def adminproject():
+    Project1 = project.query.all()
+    return render_template("adminproject.html",Project1=Project1)
+
+@app.route('/adminpublication')
+def adminpublication():
+    Publication1 = publication.query.all()
+    return render_template("adminpublication.html",Publication1=Publication1)
+
+@app.route('/admininternship')
+def admininternship():
+    Internships1 = Internship.query.all()
+    return render_template("admininternship.html",Internships1=Internships1)
+
+@app.route('/adminproduct')
+def adminproduct():
+    Product1 = product.query.all()
+    return render_template("adminproduct.html",Product1=Product1)
+
+@app.route('/adminpatent')
+def adminpatent():
+    Patent1 = patent.query.all()
+    return render_template("adminpatent.html",Patent1=Patent1)
 
 
 class Internship(db.Model):
@@ -548,14 +605,6 @@ def upload_course():
 @app.route('/fetchs')
 def fetchs():
     Email = session["email"]
-    Presentation1=paperpresentation.query.all()
-    Project1 = project.query.all()
-    Course1 = onlinecourse.query.all()
-    Internships1=Internship.query.all()
-    Publication1=publication.query.all()
-    Product1=product.query.all()
-    Patent1=patent.query.all()
-
 
     Presentation = paperpresentation.query.filter_by(email=Email)
     Project = project.query.filter_by(email=Email)
@@ -576,7 +625,28 @@ def fetchs():
     else:
         pass
 
-    # Patent = Patent, Product = Product, Project = Project, Publication = Publication, Internships = Internships, Presentation = Presentation
+    if (Presentation):
+            return render_template('myprogress.html', Presentation=Presentation)
+    else:
+        pass
+    if (Project):
+            return render_template('myprogress.html', Project=Project)
+    else:
+        pass
+    if (Publication):
+            return render_template('myprogress.html', Publication=Publication)
+    else:
+        pass
+    if (Product):
+            return render_template('myprogress.html', Product=Product)
+    else:
+        pass
+    if (Patent):
+            return render_template('myprogress.html', Patent=Patent)
+    else:
+        pass
+
+
 
 
 

@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
+    <!--Font css-->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Crete+Round:ital@1&family=Satisfy&display=swap" rel="stylesheet">
+
+    <title>Product</title>
+    <style>
+         /* Google font*/
+       @import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+       .navbar h1{
+           font-family: 'Satisfy', cursive;
+           font-size: 30px;
+       }
+        .btn{
+       background: linear-gradient(to right, #a741e8, #7764ef, #407ff6, #00bbff);
+       color:#fff;
+       border:none;
+
+     }
+     .btn:hover{
+       background: #fff;
+       border-style: solid;
+       border-width: 2px;
+       border-image: linear-gradient(to right, #a741e8, #7764ef, #407ff6, #00bbff) 1;
+       background-image: linear-gradient(to right, #a741e8, #7764ef, #407ff6, #00bbff);
+            -webkit-text-fill-color: transparent;
+            -webkit-background-clip: text;
+
+     }
+     .offcanvas{
+         background: linear-gradient(to bottom, #a741e8, #7764ef, #407ff6, #00bbff);
+     }
+     .text a{
+         font-family: 'Quicksand', sans-serif;
+         text-decoration: none;
+         color:#fff;
+
+     }
+     .text a:hover,.active{
+         border-bottom: 2px solid#fff;
+         color: #fff;
+     }
+     .card-header{
+        margin-top: 70px;
+    }
+
+
+         :root{
+             --offcanvas-width: 200px;
+             --topNavbarHeight:56px;
+         }
+         .sidebar-nav{
+             width:var(--offcanvas-width);
+         }
+         @media (min-width:992px){
+             body{
+                 overflow: auto !important;
+             }
+             .offcanvas-backdrop::before{
+                 display:none;
+             }
+             .sidebar-nav{
+                 transform: none;
+                 visibility: visible !important;
+                 top:var(--topNavbarHeight);
+                 height:calc(100% - var(--topNavbarHeight));
+             }
+             .btn-close{
+                 display: none;
+             }
+             .table{
+                 margin-left: 200px;
+             }
+             .card-header{
+                 margin-top: 70px;
+                 margin-left: 200px;
+             }
+
+
+         }
+         @media (max-width:312px){
+             .card-header{
+                 margin-top: 100px;
+             }
+
+         }
+    </style>
+  </head>
+  <body>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container-fluid">
+            <!--Offcanvas trigger-->
+            <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample" aria-controls="offcanvasExample">
+                <span class="navbar-toggler-icon"  data-bs-target="#offcanvasExample"></span>
+              </button>
+            <!--Offcanvas trigger-->
+          <h1 class="navbar-brand me-auto" href="#">Student Activity</h1>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <form class="d-flex ms-auto">
+                <input class="form-control mt-2 px-4 pt-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success  mt-2 px-4 pt-2 " type="submit"><i class="bi bi-search"></i></button>
+
+                <a class="btn btn-outline mx-5 mt-2 px-4 pt-2" type="submit" href="login.html">Logout</a>
+              </form>
+
+
+        </div>
+        </div>
+      </nav>
+
+      <!--presentation-->
+
+      <div class="offcanvas offcanvas-start sidebar-nav text-white" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasExampleLabel">Admin Portal</h5>
+          <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body p-0">
+           <nav class="navbar-dark">
+               <ul class="navbar-nav">
+                   <li>
+                       <div class="text  px-3 py-2">
+                          <a href="/adminhome"> Home</a>
+                       </div>
+                   </li>
+
+                   <li>
+                    <div class="text px-3 py-2">
+                       <a href="/adminpresentation"> Paper Presentation</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="text px-3 py-2">
+                       <a href="/adminpublication"> Paper Publication</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="text px-3 py-2">
+                       <a href="/adminproject"> Project Presentation</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="text px-3 py-2">
+                       <a href="/admincourse" > Online Course</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="text px-3 py-2">
+                       <a href="/admininternship"> Internship</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="text px-3 py-2">
+                       <a href="/adminproduct"  class="active"> Product Development</a>
+                    </div>
+                </li>
+                <li>
+                    <div class="text px-3 py-2">
+                       <a href="/adminpatent"> Patent Filing</a>
+                    </div>
+                </li>
+               </ul>
+           </nav>
+        </div>
+      </div>
+
+       <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 style="color:rebeccapurple">Product Development</h4>
+                </div>
+
+                <div class="card-body">
+                    <div class="table-responsive">
+                      <table id="example" class="table table-striped data-table" style="width: 100%;">
+                      <thead style="color: rgba(31,79,220,0.64)">
+
+                        <tr>
+
+                          <th>Name</th>
+                          <th>Roll Number</th>
+                          <th>Email</th>
+                          <th>Year</th>
+                          <th>Department</th>
+                          <th>Product Name</th>
+                          <th>Category</th>
+                          <th>Fund Amount</th>
+                            <th>Apex Number</th>
+                            <th>Commercialized</th>
+                          <th>Drive</th>
+                          <th>Proof</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                       {% for product in Product1 %}
+                        <tr>
+
+                          <td>{{  product.name }}</td>
+                          <td>{{ product.rollno }}</td>
+                          <td>{{ product.email }}</td>
+                          <td>{{ product.year }}</td>
+                          <td>{{ product.department }}</td>
+                            <td>{{ product.product_name }}</td>
+                            <td>{{ product.category }}</td>
+                          <td>{{ product.fund_amount }}</td>
+                            <td>{{ product.apex }}</td>
+                            <td>{{product.commercialized }}</td>
+                          <td><a href="{{product.drive}}">{{product.drive }}</a></td>
+                          <td>{{product.proof}}</td>
+                        </tr>
+
+                         {% endfor %}
+
+                      </tbody>
+                    </table>
+                    </div>
+                </div>
+        </div>
+    </div>
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+
+
+
+      </div>
+       </div>
+  </body>
+</html>
