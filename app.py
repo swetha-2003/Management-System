@@ -21,7 +21,8 @@ from flask_sqlalchemy import SQLAlchemy
 Base = declarative_base()
 
 app = Flask("Student Activity Management")
-app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@localhost/flaskapp"
+# app.config['SQLALCHEMY_DATABASE_URI'] = "mysql://root:@localhost/flaskapp"
+app.config['SQLALCHEMY_DATABASE_URI'] ="postgres://frmdfmenlbxmpo:c483f8bc87501ce87501bf747ef2ba6996fa222b33e21a841d11aa7345529889@ec2-34-230-198-12.compute-1.amazonaws.com:5432/d4i53qvgs5pa56"
 app.secret_key = "studentactivitymanagement"
 UPLOAD_FOLDER = 'C:/Users/sweth/PycharmProjects/flaskProject1/static'
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
